@@ -1,4 +1,4 @@
-// firebase-config.js SIN módulos (todo global)
+// Configuración de Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyCP8o-aD7kqj7eqnziLSkDyLdek4AluV48",
   authDomain: "ranking-alcoholico.firebaseapp.com",
@@ -9,6 +9,5 @@ const firebaseConfig = {
   appId: "1:852318834036:web:169e1c4afbfa1627353021"
 };
 
-// Inicializar Firebase (versión compatible sin módulos)
-const app = firebase.initializeApp(firebaseConfig);
-const db = firebase.database();
+// Inicializar Firebase
+firebase.initializeApp(firebaseConfig);
