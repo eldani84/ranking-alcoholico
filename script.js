@@ -6,7 +6,7 @@ const claves = {
   "Martin Donnet": "370",
   "Fer Lorenz": "556",
   "Gordi Ruso": "609",
-  "Adri Garau": "123"
+  "Adri Garau": "928"
 };
 
 let usuarioActual = null;
