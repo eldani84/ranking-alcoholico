@@ -1,4 +1,4 @@
-// Configuración de Firebase
+// Configuración Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyCP8o-aD7kqj7eqnziLSkDyLdek4AluV48",
   authDomain: "ranking-alcoholico.firebaseapp.com",
