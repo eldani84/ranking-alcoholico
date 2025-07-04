@@ -37,14 +37,14 @@ function registrarConsumo() {
   if (!usuarioLogueado) return alert("Debés iniciar sesión primero");
   if (!bebida || cantidad < 1 || isNaN(cantidad)) return alert("Datos inválidos");
 
-  // 1. Guardar en consumo personal
+  // Guardar en consumo personal
   const userRef = db.ref('usuarios/' + usuarioLogueado + '/consumo/' + bebida);
   userRef.once('value', (snapshot) => {
     const actual = snapshot.exists() ? snapshot.val() : 0;
     userRef.set(actual + cantidad);
   });
 
-  // 2. Guardar en feed general (anónimo)
+  // Guardar en feed anónimo
   const feedRef = db.ref('feed-consumos');
   feedRef.push({
     bebida: bebida,
@@ -92,7 +92,7 @@ function cargarRanking() {
   });
 }
 
-// Mostrar lista anónima de consumos
+// Mostrar feed anónimo
 function cargarFeed() {
   const feedDiv = document.getElementById("feed");
   feedDiv.innerHTML = "<h3>Lo que se está tomando 🍻</h3>";
