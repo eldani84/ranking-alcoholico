@@ -30,6 +30,7 @@ function login() {
     document.getElementById("app").style.display = "block";
     document.getElementById("bienvenida").textContent = `Bienvenido, ${usuarioActual}`;
     cargarRanking();
+    cargarTablaDeConsumos();
   } else {
     alert("Usuario o contraseña incorrecta");
   }
@@ -61,9 +62,9 @@ function registrarConsumo() {
   consumosRef.push(nuevoConsumo)
     .then(() => {
       alert("Consumo registrado con éxito.");
-      // Limpiar inputs si querés:
       document.getElementById("cantidad").value = 1;
       cargarRanking();
+      cargarTablaDeConsumos();
     })
     .catch(err => {
       alert("Error al guardar consumo: " + err.message);
@@ -95,3 +96,38 @@ function cargarRanking() {
     });
   });
 }
+
+function cargarTablaDeConsumos() {
+  const consumosRef = firebase.database().ref("consumos");
+  consumosRef.once("value", snapshot => {
+    const data = snapshot.val() || {};
+    const tbody = document.querySelector("#tablaConsumos tbody");
+    tbody.innerHTML = "";
+
+    const ahora = new Date();
+    const mesActual = ahora.getMonth();
+    const anioActual = ahora.getFullYear();
+
+    Object.values(data).forEach(consumo => {
+      const fecha = new Date(consumo.timestamp);
+      const mesConsumo = fecha.getMonth();
+      const anioConsumo = fecha.getFullYear();
+
+      if (mesConsumo === mesActual && anioConsumo === anioActual) {
+        const tr = document.createElement("tr");
+        const nombre = consumo.usuario === usuarioActual ? consumo.usuario : "Anónimo";
+
+        tr.innerHTML = `
+          <td>${nombre}</td>
+          <td>${consumo.bebida}</td>
+          <td>${consumo.horario}</td>
+          <td>${consumo.cantidad}</td>
+          <td>${consumo.puntos}</td>
+        `;
+
+        tbody.appendChild(tr);
+      }
+    });
+  });
+}
+
