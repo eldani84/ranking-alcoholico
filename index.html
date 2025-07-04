@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta charset="UTF-8" />
   <title>Ranking Alcohólico 🍻</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -34,7 +34,20 @@
 
     <h3>Registrar consumo 🍺</h3>
     <label for="bebida">Bebida:</label>
-    <input type="text" id="bebida" placeholder="Fernet, Cerveza, Vino..." />
+    <select id="bebida">
+      <option>Aperitivo</option>
+      <option>Fernet</option>
+      <option>Cerveza</option>
+      <option>Vino</option>
+      <option>Whisky</option>
+    </select>
+
+    <label for="horario">Horario:</label>
+    <select id="horario">
+      <option>Medio día</option>
+      <option>Tarde</option>
+      <option>Noche</option>
+    </select>
 
     <label for="cantidad">Cantidad (en vasos):</label>
     <input type="number" id="cantidad" min="1" value="1" />
@@ -47,17 +60,14 @@
     <div id="feed"></div>
   </div>
 
-  <!-- Firebase SDK sin módulos -->
+  <!-- Firebase SDK compat -->
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 
-  <!-- Configuración e inicialización Firebase -->
+  <!-- Configuración Firebase -->
   <script src="firebase-config.js"></script>
 
-  <!-- Código funcional sin módulos -->
+  <!-- Código funcional -->
   <script src="script.js"></script>
 </body>
-
-
 </html>
-
