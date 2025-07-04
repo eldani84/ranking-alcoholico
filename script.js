@@ -1,11 +1,11 @@
 // Usuarios y contraseñas simples
 const claves = {
   "Dani Eberhardt": "294",
-  "Juampi Comba": "123",
-  "Martin Mariano": "123",
-  "Martin Donnet": "123",
-  "Fer Lorenz": "123",
-  "Gordi Ruso": "123",
+  "Juampi Comba": "389",
+  "Martin Mariano": "215",
+  "Martin Donnet": "370",
+  "Fer Lorenz": "556",
+  "Gordi Ruso": "609",
   "Adri Garau": "123"
 };
 
