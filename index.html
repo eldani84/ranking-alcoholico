@@ -1,54 +1,112 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Ranking Alcohólico 🍻</title>
-  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f8f9fa;
+    }
+
+    h1, h2, h3 {
+      text-align: center;
+    }
+
+    #login, #app {
+      max-width: 600px;
+      margin: auto;
+    }
+
+    label, select, input {
+      display: block;
+      margin-bottom: 10px;
+      width: 100%;
+    }
+
+    button {
+      padding: 10px;
+      width: 100%;
+      background-color: #198754;
+      color: white;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #157347;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    table th, table td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: center;
+    }
+
+    table thead {
+      background-color: #e9ecef;
+    }
+  </style>
 </head>
 <body>
-  <!-- Firebase JS SDK (sin módulos, estilo tradicional) -->
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
-<script src="firebase-config.js"></script>
-<script src="script.js"></script>
 
-  <h1>Ranking Alcohólico 🍺</h1>
+  <h1>Ranking Alcohólico 🍻</h1>
 
   <div id="login">
+    <h2>Iniciar Sesión</h2>
+    <label for="userSelect">Seleccioná tu nombre:</label>
     <select id="userSelect">
-      <option value="">-- Elegí tu nombre --</option>
-      <option value="Dani Eberhardt">Dani Eberhardt</option>
-      <option value="Juampi Comba">Juampi Comba</option>
-      <option value="Martin Mariano">Martin Mariano</option>
-      <option value="Martin Donnet">Martin Donnet</option>
-      <option value="Fer Lorenz">Fer Lorenz</option>
-      <option value="Gordi Ruso">Gordi Ruso</option>
-      <option value="Adri Garau">Adri Garau</option>
+      <option>Dani Eberhardt</option>
+      <option>Juampi Comba</option>
+      <option>Martin Mariano</option>
+      <option>Martin Donnet</option>
+      <option>Fer Lorenz</option>
+      <option>Gordi Ruso</option>
+      <option>Adri Garau</option>
     </select>
-    <input type="password" id="password" placeholder="Contraseña">
+
+    <label for="password">Contraseña:</label>
+    <input type="password" id="password" placeholder="123" />
+
     <button onclick="login()">Entrar</button>
   </div>
-  <div id="feed"></div>
+
   <div id="app" style="display:none;">
     <h2 id="bienvenida"></h2>
 
+    <h3>Registrar consumo 🍺</h3>
     <label for="bebida">Bebida:</label>
-    <select id="bebida">
-      <option value="cerveza">Cerveza</option>
-      <option value="fernet">Fernet</option>
-      <option value="vino">Vino</option>
-    </select>
+    <input type="text" id="bebida" placeholder="Fernet, Cerveza, Vino..." />
 
-    <label for="cantidad">Cantidad:</label>
-    <input type="number" id="cantidad" min="1" value="1">
+    <label for="cantidad">Cantidad (en vasos):</label>
+    <input type="number" id="cantidad" min="1" value="1" />
 
     <button onclick="registrarConsumo()">Registrar</button>
 
-    <h3>Ranking Actual</h3>
+    <h3>Ranking general 🔝</h3>
     <ul id="ranking"></ul>
+
+    <div id="feed"></div>
   </div>
 
+  <!-- Firebase SDK compat (NO usa type="module") -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
+  <!-- Configuración e inicialización -->
   <script src="firebase-config.js"></script>
+
+  <!-- Script con funciones -->
   <script src="script.js"></script>
+
 </body>
 </html>
