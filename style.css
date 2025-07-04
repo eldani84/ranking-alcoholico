@@ -24,3 +24,17 @@ select, input, button {
   margin-top: 10px;
   padding: 10px;
 }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+table th, table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: center;
+}
+table thead {
+  background-color: #eee;
+}
+
