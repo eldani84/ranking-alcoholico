@@ -11,7 +11,6 @@ const claves = {
 let usuarioLogueado = "";
 const db = firebase.database();
 
-// Iniciar sesión
 function login() {
   const user = document.getElementById("userSelect").value;
   const pass = document.getElementById("password").value;
@@ -28,7 +27,6 @@ function login() {
   }
 }
 
-// Registrar consumo
 function registrarConsumo() {
   const bebida = document.getElementById("bebida").value.trim();
   const cantidad = parseInt(document.getElementById("cantidad").value);
@@ -37,9 +35,9 @@ function registrarConsumo() {
   if (!usuarioLogueado) return alert("Debés iniciar sesión primero");
   if (!bebida || cantidad < 1 || isNaN(cantidad)) return alert("Datos inválidos");
 
-  // Guardar en consumo personal
+  // Guardar consumo personal
   const userRef = db.ref('usuarios/' + usuarioLogueado + '/consumo/' + bebida);
-  userRef.once('value', (snapshot) => {
+  userRef.once('value', snapshot => {
     const actual = snapshot.exists() ? snapshot.val() : 0;
     userRef.set(actual + cantidad);
   });
@@ -58,14 +56,13 @@ function registrarConsumo() {
   });
 }
 
-// Mostrar ranking
 function cargarRanking() {
   const rankingUl = document.getElementById("ranking");
   rankingUl.innerHTML = "<li>Cargando...</li>";
 
   const usuariosRef = db.ref('usuarios');
 
-  usuariosRef.once('value', (snapshot) => {
+  usuariosRef.once('value', snapshot => {
     const data = snapshot.val();
     if (!data) {
       rankingUl.innerHTML = "<li>No hay datos aún</li>";
@@ -92,7 +89,6 @@ function cargarRanking() {
   });
 }
 
-// Mostrar feed anónimo
 function cargarFeed() {
   const feedDiv = document.getElementById("feed");
   feedDiv.innerHTML = "<h3>Lo que se está tomando 🍻</h3>";
@@ -114,7 +110,7 @@ function cargarFeed() {
   const feedBody = tabla.querySelector("#feed-body");
   const feedRef = db.ref('feed-consumos');
 
-  feedRef.once('value', (snapshot) => {
+  feedRef.once('value', snapshot => {
     feedBody.innerHTML = "";
 
     const data = snapshot.val();
@@ -126,7 +122,7 @@ function cargarFeed() {
     const registros = Object.entries(data).map(([id, item]) => item);
     registros.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
 
-    registros.forEach((item) => {
+    registros.forEach(item => {
       const fecha = new Date(item.timestamp);
       const formateado = fecha.toLocaleString("es-AR", { hour12: false });
       const quien = item.autor === usuarioLogueado ? "Vos" : "—";
@@ -142,4 +138,3 @@ function cargarFeed() {
     });
   });
 }
-
