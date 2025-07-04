@@ -1,61 +1,9 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Ranking Alcohólico 🍻</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      margin: 0;
-      padding: 20px;
-      background-color: #f8f9fa;
-    }
-
-    h1, h2, h3 {
-      text-align: center;
-    }
-
-    #login, #app {
-      max-width: 600px;
-      margin: auto;
-    }
-
-    label, select, input {
-      display: block;
-      margin-bottom: 10px;
-      width: 100%;
-    }
-
-    button {
-      padding: 10px;
-      width: 100%;
-      background-color: #198754;
-      color: white;
-      border: none;
-      font-size: 16px;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background-color: #157347;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-    }
-
-    table th, table td {
-      border: 1px solid #ccc;
-      padding: 8px;
-      text-align: center;
-    }
-
-    table thead {
-      background-color: #e9ecef;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
@@ -98,16 +46,15 @@
     <div id="feed"></div>
   </div>
 
-  <!-- Firebase SDK compat (NO usa módulos) -->
+  <!-- Firebase SDK sin módulos -->
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 
-  <!-- Configuración e inicialización -->
+  <!-- Configuración e inicialización Firebase -->
   <script src="firebase-config.js"></script>
 
-  <!-- Funciones -->
+  <!-- Código funcional sin módulos -->
   <script src="script.js"></script>
-
 </body>
 </html>
 
