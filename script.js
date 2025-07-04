@@ -105,6 +105,8 @@ function cargarTablaDeConsumos() {
   const consumosRef = firebase.database().ref("consumos");
   consumosRef.once("value", snapshot => {
     const data = snapshot.val() || {};
+    console.log("Datos recibidos:", data);  // <--- esto te muestra todo lo que hay
+    
     const tbody = document.querySelector("#tablaConsumos tbody");
     tbody.innerHTML = "";
 
@@ -113,25 +115,28 @@ function cargarTablaDeConsumos() {
     const anioActual = ahora.getFullYear();
 
     Object.values(data).forEach(consumo => {
-      const fecha = new Date(consumo.timestamp);
-      const mesConsumo = fecha.getMonth();
-      const anioConsumo = fecha.getFullYear();
+      console.log("Consumo:", consumo);  // <--- para ver cada registro
+      
+      if (consumo.timestamp) {
+        const fecha = new Date(consumo.timestamp);
+        const mesConsumo = fecha.getMonth();
+        const anioConsumo = fecha.getFullYear();
 
-      if (mesConsumo === mesActual && anioConsumo === anioActual) {
-        const tr = document.createElement("tr");
-        const nombre = consumo.usuario === usuarioActual ? consumo.usuario : "Anónimo";
+        if (mesConsumo === mesActual && anioConsumo === anioActual) {
+          const tr = document.createElement("tr");
+          const nombre = consumo.usuario === usuarioActual ? consumo.usuario : "Anónimo";
 
-        tr.innerHTML = `
-          <td>${nombre}</td>
-          <td>${consumo.bebida}</td>
-          <td>${consumo.horario}</td>
-          <td>${consumo.cantidad}</td>
-          <td>${consumo.puntos}</td>
-        `;
+          tr.innerHTML = `
+            <td>${nombre}</td>
+            <td>${consumo.bebida}</td>
+            <td>${consumo.horario}</td>
+            <td>${consumo.cantidad}</td>
+            <td>${consumo.puntos}</td>
+          `;
 
-        tbody.appendChild(tr);
+          tbody.appendChild(tr);
+        }
       }
     });
   });
 }
-
