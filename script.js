@@ -1,6 +1,6 @@
 // Usuarios y contraseñas simples
 const claves = {
-  "Dani Eberhardt": "123",
+  "Dani Eberhardt": "294",
   "Juampi Comba": "123",
   "Martin Mariano": "123",
   "Martin Donnet": "123",
