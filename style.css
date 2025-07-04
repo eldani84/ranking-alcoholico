@@ -1,52 +1,126 @@
+/* Modern UI para el Ranking Alcohólico 🍻 */
+
 body {
   font-family: 'Segoe UI', sans-serif;
   margin: 0;
   padding: 20px;
-  background-color: #f8f9fa;
+  background: linear-gradient(to bottom, #f1f3f5, #e9ecef);
+  color: #212529;
 }
 
 h1, h2, h3 {
   text-align: center;
+  margin-bottom: 10px;
+  color: #343a40;
 }
 
 #login, #app {
-  max-width: 600px;
+  max-width: 500px;
   margin: auto;
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+  margin-bottom: 30px;
+  animation: fadeIn 0.4s ease-in-out;
 }
 
-label, select, input {
+label {
   display: block;
-  margin-bottom: 10px;
+  margin-top: 15px;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #495057;
+}
+
+input, select {
   width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ced4da;
+  border-radius: 10px;
+  box-sizing: border-box;
+  background-color: #f8f9fa;
+  transition: border-color 0.3s ease;
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: #0d6efd;
 }
 
 button {
-  padding: 10px;
+  margin-top: 20px;
   width: 100%;
-  background-color: #198754;
+  padding: 14px;
+  font-size: 18px;
+  background-color: #0d6efd;
   color: white;
   border: none;
-  font-size: 16px;
+  border-radius: 12px;
   cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.1s ease;
 }
 
 button:hover {
-  background-color: #157347;
+  background-color: #0b5ed7;
+  transform: scale(1.02);
 }
 
+/* Tabla con estilo moderno */
 table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+  font-size: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 table th, table td {
-  border: 1px solid #ccc;
-  padding: 8px;
+  border: 1px solid #dee2e6;
+  padding: 10px;
   text-align: center;
 }
 
 table thead {
   background-color: #e9ecef;
+  font-weight: bold;
 }
 
+#feed {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #666;
+}
+
+/* Responsive para móviles */
+@media (max-width: 600px) {
+  body {
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  h2, h3 {
+    font-size: 20px;
+  }
+
+  input, select, button {
+    font-size: 16px;
+  }
+
+  table th, table td {
+    font-size: 13px;
+    padding: 6px;
+  }
+}
+
+/* Animación de entrada */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
