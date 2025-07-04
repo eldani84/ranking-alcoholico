@@ -18,7 +18,7 @@ const tablaPuntos = {
   "Cerveza": { "Medio día": 15, "Tarde": 10, "Noche": 8 },
   "Vino": { "Medio día": 25, "Tarde": 30, "Noche": 25 },
   "Licores varios": { "Medio día": 30, "Tarde": 10, "Noche": 25 },
-  "Whisky": { "Medio día": 30, "Tarde":30, "Noche": 25 }
+  "Whisky": { "Medio día": 30, "Tarde":30, "Noche": 25 },
 };
 
 function login() {
