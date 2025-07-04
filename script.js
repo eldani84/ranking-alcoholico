@@ -1,19 +1,3 @@
-// Importaciones desde firebase-config.js
-import {
-  getDatabase,
-  ref,
-  set,
-  get,
-  child,
-  onValue,
-  update,
-  push
-} from "https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js";
-
-const db = getDatabase();
-let usuarioLogueado = "";
-
-// Contraseñas simples
 const claves = {
   "Dani Eberhardt": "123",
   "Juampi Comba": "123",
@@ -23,6 +7,9 @@ const claves = {
   "Gordi Ruso": "123",
   "Adri Garau": "123"
 };
+
+let usuarioLogueado = "";
+const db = firebase.database();
 
 // Iniciar sesión
 function login() {
@@ -35,7 +22,7 @@ function login() {
     document.getElementById("app").style.display = "block";
     document.getElementById("bienvenida").innerText = "Hola " + user + " 👋";
     cargarRanking();
-    cargarFeed(); // Mostrar lista anónima
+    cargarFeed();
   } else {
     alert("Contraseña incorrecta");
   }
@@ -43,23 +30,23 @@ function login() {
 
 // Registrar consumo
 function registrarConsumo() {
-  const bebida = document.getElementById("bebida").value;
+  const bebida = document.getElementById("bebida").value.trim();
   const cantidad = parseInt(document.getElementById("cantidad").value);
   const ahora = new Date().toISOString();
 
   if (!usuarioLogueado) return alert("Debés iniciar sesión primero");
-  if (cantidad < 1 || isNaN(cantidad)) return alert("Cantidad inválida");
+  if (!bebida || cantidad < 1 || isNaN(cantidad)) return alert("Datos inválidos");
 
   // 1. Guardar en consumo personal
-  const userRef = ref(db, 'usuarios/' + usuarioLogueado + '/consumo/' + bebida);
-  get(userRef).then((snapshot) => {
+  const userRef = db.ref('usuarios/' + usuarioLogueado + '/consumo/' + bebida);
+  userRef.once('value', (snapshot) => {
     const actual = snapshot.exists() ? snapshot.val() : 0;
-    set(userRef, actual + cantidad);
+    userRef.set(actual + cantidad);
   });
 
   // 2. Guardar en feed general (anónimo)
-  const feedRef = ref(db, 'feed-consumos');
-  push(feedRef, {
+  const feedRef = db.ref('feed-consumos');
+  feedRef.push({
     bebida: bebida,
     cantidad: cantidad,
     autor: usuarioLogueado,
@@ -74,11 +61,11 @@ function registrarConsumo() {
 // Mostrar ranking
 function cargarRanking() {
   const rankingUl = document.getElementById("ranking");
-  rankingUl.innerHTML = "Cargando...";
+  rankingUl.innerHTML = "<li>Cargando...</li>";
 
-  const usuariosRef = ref(db, 'usuarios');
+  const usuariosRef = db.ref('usuarios');
 
-  onValue(usuariosRef, (snapshot) => {
+  usuariosRef.once('value', (snapshot) => {
     const data = snapshot.val();
     if (!data) {
       rankingUl.innerHTML = "<li>No hay datos aún</li>";
@@ -102,7 +89,7 @@ function cargarRanking() {
     rankingArray.forEach((entry, index) => {
       rankingUl.innerHTML += `<li>${index + 1}. ${entry.user} — ${entry.total} vasos</li>`;
     });
-  }, { onlyOnce: true });
+  });
 }
 
 // Mostrar lista anónima de consumos
@@ -125,9 +112,9 @@ function cargarFeed() {
   feedDiv.appendChild(tabla);
 
   const feedBody = tabla.querySelector("#feed-body");
-  const feedRef = ref(db, 'feed-consumos');
+  const feedRef = db.ref('feed-consumos');
 
-  onValue(feedRef, (snapshot) => {
+  feedRef.once('value', (snapshot) => {
     feedBody.innerHTML = "";
 
     const data = snapshot.val();
@@ -155,3 +142,4 @@ function cargarFeed() {
     });
   });
 }
+
