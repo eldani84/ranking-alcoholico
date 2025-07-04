@@ -49,14 +49,18 @@ function registrarConsumo() {
   const puntosBase = tablaPuntos[bebida][horario] || 0;
   const puntos = puntosBase * cantidad;
 
-  const nuevoConsumo = {
-    usuario: usuarioActual,
-    bebida,
-    horario,
-    cantidad,
-    puntos,
-    timestamp: Date.now()
-  };
+
+const nuevoConsumo = {
+  usuario: usuarioActual,
+  bebida,
+  horario,
+  cantidad,
+  puntos,
+  timestamp: Date.now() // 👈 Esto guarda la fecha y hora
+};
+
+
+
 
   const consumosRef = firebase.database().ref("consumos");
   consumosRef.push(nuevoConsumo)
