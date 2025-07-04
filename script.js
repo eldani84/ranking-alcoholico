@@ -13,11 +13,12 @@ let usuarioActual = null;
 
 // Tabla de puntos por bebida y horario
 const tablaPuntos = {
-  "Aperitivo": { "Medio día": 15, "Tarde": 12, "Noche": 10 },
-  "Fernet": { "Medio día": 10, "Tarde": 10, "Noche": 8 },
-  "Cerveza": { "Medio día": 12, "Tarde": 10, "Noche": 6 },
-  "Vino": { "Medio día": 8, "Tarde": 10, "Noche": 15 },
-  "Whisky": { "Medio día": 5, "Tarde": 7, "Noche": 10 }
+  "Aperitivo - Vermut": { "Medio día": 20, "Tarde": 15, "Noche": 10 },
+  "Fernet": { "Medio día": 20, "Tarde": 15, "Noche": 10 },
+  "Cerveza": { "Medio día": 15, "Tarde": 10, "Noche": 8 },
+  "Vino": { "Medio día": 25, "Tarde": 30, "Noche": 25 },
+  "Licores varios": { "Medio día": 30, "Tarde": 10, "Noche": 25 },
+  "Whisky": { "Medio día": 30, "Tarde":30, "Noche": 25 }
 };
 
 function login() {
